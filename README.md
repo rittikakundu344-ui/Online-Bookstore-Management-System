@@ -25,9 +25,6 @@ This project provides a centralized database solution to maintain bookstore reco
 
 - **Database:** MySQL 8.0
 - **Database Management Tool:** MySQL Workbench
-- **Storage Engine:** InnoDB
-- **Data Import/Export:** CSV
-- **Backup and Restore:** mysqldump
 
 ## 🗄️ Database Structure
 
