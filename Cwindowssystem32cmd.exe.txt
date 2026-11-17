@@ -1,0 +1,43 @@
+Microsoft Windows [Version 10.0.26200.9974]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\hp>cd "C:\Program Files\MySQL\MySQL Server 8.0\bin"
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p bookstore_db > bookstore_backup.sql
+Access is denied.
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p bookstore_db > "%USERPROFILE%\Desktop\bookstore_backup.sql"
+The system cannot find the path specified.
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mkdir "%USERPROFILE%\MySQL_Backup"
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p bookstore_db > "%USERPROFILE%\MySQL_Backup\bookstore_backup.sql"
+Enter password: *****
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>dir "%USERPROFILE%\MySQL_Backup"
+ Volume in drive C is Windows
+ Volume Serial Number is 4888-EF0D
+
+ Directory of C:\Users\hp\MySQL_Backup
+
+17-11-2026  22:53    <DIR>          .
+17-11-2026  22:53    <DIR>          ..
+17-11-2026  22:53            14,665 bookstore_backup.sql
+               1 File(s)         14,665 bytes
+               2 Dir(s)  47,463,870,464 bytes free
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p -e "CREATE DATABASE bookstore_restored"
+Enter password: *****
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p bookstore_restored < "%USERPROFILE%\MySQL_Backup\bookstore_backup.sql"
+Enter password: *****
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p -e "SELECT COUNT(*) FROM bookstore_restored.books"
+Enter password: *****
++----------+
+| COUNT(*) |
++----------+
+|       15 |
++----------+
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>
